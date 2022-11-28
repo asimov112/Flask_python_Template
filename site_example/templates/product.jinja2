@@ -1,0 +1,64 @@
+{% extends "baseTemplate.html" %}
+
+{% block content %}
+
+<div class="row">
+        <div class="col-md-6 offset-3 align-self-center">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="{{ item.image }}" alt="" style="height:100%;width:100%;" />
+                </div>
+                <div class="col-md-8">
+                    <h1 class="display-4">{{ item.productName }}</h1>
+                    <p>£{{ item.price }}</p>
+                    {% if current_user.is_authenticated %}
+                        <form method="POST">
+                            {{ form.csrf_token }}
+                            <div class="form-outline mb-4">
+                                {{ form.quantity.label(class_="form-label d-inline",type_="label") }}
+                                {{ form.quantity(class_="form-control d-inline") }}
+                                {{ form.submission(class_="btn btn-primary d-inline") }}
+                            </div>
+                        </form>
+                    {% else %}
+                            <button class="btn btn-primary" style="font-size:10pt;" onclick="location.href='/login'">
+                                <span class="bi bi-cart"></span> Please login to add to basket
+                            </button>
+                    {% endif %}
+                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                </br>
+                {% if itemReview %}
+                    {% for item in itemReview %}
+                        <div class="card">
+                            <div class="card-body">
+                                <h6 class="card-title">{{ item.productName }}</h6>
+                                <p> {{ item.review }} </p>
+                                <p> {{ item.starRating }} / 5</p>
+                                <p> by {{ item.userEmail }} at {{ item.date }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    {% if current_user.is_authenticated and itemReview %}
+                        <a href="{{ url_for('reviewItem',productId=item.id) }}" class="btn btn-primary">What's your thoughts?</a>
+                    {% endif %}
+                {% else %}
+                    <div class="card">
+                        <div class="card-body">
+                            <p>No reviews posted yet for this product!</p>
+                            <p>No stars posted yet!</p>
+                        </div>
+                    </div>
+                    {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('reviewItem',productId=item.id) }}" class="btn btn-primary">Be the first!</a>
+                    {% endif %}
+                {% endif %}
+                </div>
+            </div>
+        </div>
+</div>
+
+{% endblock %}

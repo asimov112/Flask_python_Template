@@ -1,0 +1,34 @@
+{% extends "baseTemplate.html" %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <div class="card">
+            <ul class="list-group list-group-flush">
+                {% for item in products %}
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col">
+                            <img src="{{ item.image }}" alt="" />
+                        </div>
+                        <div class="col">
+                            <h4>
+                                <a href="{{ url_for('products', item=item.id) }}">
+                                    {{ item.productName }}
+                                </a>
+                            </h4>
+                            <p>£{{ item.price }}</p>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+                {% if not products %}
+                    <h6>Products are empty</h6>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

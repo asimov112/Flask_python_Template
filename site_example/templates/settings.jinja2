@@ -1,0 +1,87 @@
+{% extends "baseTemplate.html" %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <h1 class="display-4">Settings</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <p>Name: {{ user[0] }}</p>
+        <p>Email address: {{ user[1] }}</p>
+        <p>Date created: {{ user[2] }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <h4>Purchase history</h4>
+        <table class="table">
+            <thead>
+                <th scope="col">id</th>
+                <th scope="col">Product name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+            <thead>
+            <tbody>
+                <tr>
+                    <th scope="row"> 1 </th>
+                    <td> Product name </td>
+                    <td> Quantity </td>
+                    <td> Price </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <h4>Edit user settings</h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <form method="POST">
+            {{ form.csrf_token }}
+
+            {% if form.password.errors %}
+                <ul>
+                    {% for error in form.password.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <div class="form-outline mb-4">
+                {{ form.password.label(class_="form-label") }}
+                {{ form.password(class_="form-control") }}
+            </div>
+
+            {% if form.passwordConfirmation.errors %}
+                <ul>
+                    {% for error in form.passwordConfirmation.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <div class="form-outline mb-4">
+                {{ form.passwordConfirmation.label(class_="form-label") }}
+                {{ form.passwordConfirmation(class_="form-control") }}
+            </div>
+
+            {% if form.submission.errors %}
+                <ul>
+                    {% for error in form.submission.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            {{ form.submission(class_="btn btn-primary") }}
+        </form>
+    </div>
+</div>
+
+{% endblock %}

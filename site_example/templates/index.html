@@ -1,0 +1,51 @@
+{% extends "baseTemplate.html" %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col justify-content-center mb-4">
+        <div class="jumbotron text-center">
+            <h1 class="display-4">
+                Jammin tunes
+            </h1>
+        </div>
+    </div>
+</div>
+
+<div class="row text-center">
+    <div class="col justify-content-center mb-4">
+        <div class="card">
+            <img src="{{ url_for('static',filename='images/elvis-presley-g92a77a154_640.jpg') }}" class="card-img-top" alt="">
+            <div class="card-body">
+                <h6 class="card-title">Product range</h6>
+            </div>
+        </div>
+    </div>
+    <div class="col justify-content-center mb-4">
+        <div class="card">
+            <img src="{{ url_for('static',filename='images/guitar-g9cd45cd4e_640.jpg') }}" class="card-img-top" alt="">
+            <div class="card-body">
+                <h6 class="card-title">New releases</h6>
+            </div>
+        </div>
+    </div>
+    <div class="col justify-content-center mb-4">
+        <div class="card">
+            <img src="{{ url_for('static',filename='images/mic-g7c4e95638_640.jpg') }}" class="card-img-top" alt="">
+            <div class="card-body">
+                <h6 class="card-title">Pod casts</h6>
+            </div>
+        </div>
+    </div>
+    <div class="col justify-content-center mb-4">
+        <div class="card">
+            <img src="{{ url_for('static',filename='images/woman-geb16be93d_640.jpg') }}" class="card-img-top" alt="">
+            <div class="card-body">
+                <h6 class="card-title">On the go</h6>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

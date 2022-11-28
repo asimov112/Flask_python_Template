@@ -1,0 +1,52 @@
+{% extends "baseTemplate.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col d-flex justify-content-center align-middle">
+        <form method="POST" action="{{url_for("login")}}">
+            {{form.csrf_token}}
+            <h1 class="display-4">Login</h1>
+
+            <fieldset class="email">
+                {{form.emailAddress.label}}
+                {{form.emailAddress(placeholder="example@example.com",class_="form-control") }}
+            </fieldset>
+
+            {% if form.emailAddress.errors %}
+                <ul>
+                    {% for error in form.emailAddress.errors %}
+                    <li>{{error}}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <fieldset class="password">
+                {{form.password.label}}
+                {{form.password(class_="form-control")}}
+            </fieldset>
+
+            {% if form.password.errors %}
+                <ul>
+                    {% for error in form.password.errors %}
+                        <li>{{error}}
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            </br>
+            <div class="submit">
+                {{ form.submission(class_="btn btn-primary") }}
+            </div>
+
+            {% if loginFail %}
+                <small>{{ loginFail }}<small>
+            {% endif %}
+
+            <div class="signup">
+                <small>No account? Sign up today!</small>
+                <a href="/user/create_account">Sign up</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

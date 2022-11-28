@@ -1,0 +1,28 @@
+{% extends "baseTemplate.html" %}
+
+{% block content %}
+
+<div class="row">
+
+    <div class="col-md-6 offset-3">
+        <form method="POST">
+            {{ form.csrf_token }}
+            <h4>Please provide your thoughts on this music</h4>
+            <div class="form-outline">
+                {{ form.reviewInformation.label(class_="form-label") }}
+                {{ form.reviewInformation(class_="form-control") }}
+            </div>
+            <h4>How would you rate this piece of music?</h4>
+            <div class="form-outline">
+                {{ form.starRating.label(class_="form-label") }}
+                {{ form.starRating(class_="form-control") }}
+            </div>
+            <div class="form-outline">
+                {{ form.submission(class_="form-control") }}
+            </div>
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}

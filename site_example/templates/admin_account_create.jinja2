@@ -1,0 +1,39 @@
+{% extends "baseTemplate.html" %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col d-flex justify-content-center">
+        <form method="POST">
+            <h1 class="display-4">Create administration account</h1>
+            {{form.csrf_token}}
+            <div class="form-outline mb-4">
+                {{form.name.label(class_="form-label")}}
+                {{form.name(placeholder="Example name",class_="form-control",type_="text")}}
+            </div>
+            <div class="form-outline mb-4">
+                {{form.emailAddress.label(class_="form-label")}}
+                {{form.emailAddress(placeholder="Example@domain.com",class_="form-control",type_="email")}}
+            </div>
+            <div class="form-outline mb-4">
+                {{form.password.label(class_="form-label")}}
+                {{form.password(class_="form-control",type_="password")}}
+            </div>
+            <div class="form-outline mb-4">
+                {{form.passwordConfirmation.label(class_="form-label")}}
+                {{form.passwordConfirmation(class_="form-control",type_="password")}}
+            </div>
+            <div class="form-outline mb-4">
+                {{form.submission(class_="btn btn-primary")}}
+            </div>
+            </br>
+            <div class="login">
+                <div>
+                    <small>Already have an account?</small>
+                    <a href="/user/login">Login</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
